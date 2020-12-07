@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Music Player</title>
+</head>
+
+<body>
+  <h1 id="music-Player-letter">Music Player</h1>
+
+  <div class="music-container" id="music-container">
+    <div class="music-info">
+      <h4 id="title"></h4>
+      <div class="progress-container" id="progress-container">
+        <div class="progress" id="progress"></div>
+      </div>
+    </div>
+
+    <audio src="music/ukulele.mp3" id="audio"></audio>
+
+    <div class="img-container">
+      <img src="images/ukulele.jpg" alt="music-cover" id="cover" />
+    </div>
+    <div class="navigation">
+      <button id="prev" class="action-btn">
+        <i class="fas fa-backward"></i>
+      </button>
+      <button id="play" class="action-btn action-btn-big">
+        <i class="fas fa-play"></i>
+      </button>
+      <button id="next" class="action-btn">
+        <i class="fas fa-forward"></i>
+      </button>
+    </div>
+    <div class="slidecontainer" id="slidecontainer">
+      <input type="range" min="0" max="100" value="50" class="slider" id="volumeRange">
+      <p class="volumeValue">Value: <span id="volumeValue"></span></p>
+    </div>
+    <script>
+      var slider = document.getElementById("volumeRange");
+      var output = document.getElementById("volumeValue");
+      output.innerHTML = slider.value;
+
+      slider.oninput = function() {
+        output.innerHTML = this.value;
+        if (this.value <= 70 && this.value >= 30) {
+          document.getElementById('muteButton').src="images/volume/mediumVolume.png";
+        } else if (this.value > 70) {
+          document.getElementById('muteButton').src="images/volume/highVolume.png";
+        } else if (this.value == 0) {
+          document.getElementById('muteButton').src="images/volume/muted.png";
+        } else {
+          document.getElementById('muteButton').src="images/volume/lowVolume.png";
+        }
+      }
+    </script>
+    
+      <img id="muteButton" class="checkable muteButton" src="images/volume/mediumVolume.png"/>
+    
+    <script>
+      $("img.checkable").click(function () {
+    $(this).toggleClass("checked");
+});
+    </script>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
